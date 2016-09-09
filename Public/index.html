@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Number Guess</title>
+  <script src="vendors/jquery-3.1.0.min.js" charset="utf-8"></script>
+  <script src="scripts/clientscript.js"></script>
+  <link rel="stylesheet" href="Vendors/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <div id="startScreen" class="container gameScreen">
+    <div id="startTitle" class="row">
+
+      <div class="gameTitle row">
+        2016: A Number Odyssey
+      </div>
+      <div id="startText" class="row">
+        <p class="halText">
+          HAL: Good afternoon. I am a HAL 9000 computer.<br>
+          The 9000 series is the most reliable computer ever made.<br>
+          No 9000 computer has ever made a mistake or distorted information.<br>
+          We are all, by any practical definition of the words,<br>
+          foolproof and incapable of error.
+        </p>
+        <img class="halImage" src="images/halimage.png" alt="Hal 9000 Image" />
+      </div>
+    </div>
+    <div id="startInfo" class="row">
+        <div class="startInstructions row">
+          <h4 class="humanText">Dr. Poole: Unfortunately that sounds a little like famous last words.</h4>
+          <div class="gameText">
+            <p>Dave: The HAL 9000 has been proven to be malfunctioning.<br>
+              We have no choice but disconnection.<br>
+              You four astronauts must guess the correct random integer<br>
+              to manually open the emergency airlock and disconnect HAL.
+            </p>
+        </div>
+      </div>
+    </div>
+    <div id="startChoices" class="row">
+      <div class="startSettings">
+        <h4 class="gameText">Enter Mission Parameters</h4>
+        <p class="gameText">Enter Astronaut Names</p>
+        <input class="nameIn" id ="nameOneIn" type="text" placeholder="Player 1">
+        <input class="nameIn" id ="nameTwoIn" type="text" placeholder="Player 2">
+        <input class="nameIn" id ="nameThreeIn" type="text" placeholder="Player 3">
+        <input class="nameIn" id ="nameFourIn" type="text" placeholder="Player 4">
+        <br><br>
+        <p class="gameText">The upper limit of your guessing range will be:
+          <select id="maxNumSelect" class="btn">
+            <option value=10>10</option>
+            <option value=50>50</option>
+            <option value=100>100</option>
+            <option value=9000>9000</option>
+          </select>
+        </p>
+      </div>
+      <button id="startButton" class="btn btn-danger row">Join Dave:<br>Begin Deactivation Protocol</button>
+    </div>
+</div>
+<div id="playScreen" class="container gameScreen">
+  <div id="playTitle" class="row">
+    <div class="gameTitle row">
+      2016: A Number Odyssey
+    </div>
+    <div id="playTitleText" class="row">
+      <p id="halPlayText" class="halText">
+        HAL: Just what do you think you're doing, Dave?
+      </p>
+      <img class="halImage" src="images/halimage.png" alt="Hal 9000 Image" />
+      <p>
+        To help Dave deactivate HAL,<br>guess the random number that will unlock the emergency airlock.<br>
+        It is an integer between 1 and <text id="maxNumText">9000</text>.
+      </p>
+    </div>
+  </div>
+  <div id="playField" class="row">
+    <div class="playColumn col-xs-3">
+      <div class="row pGuessBox pGridBox">
+        <p id="nameOneOut">Player One</p>
+        <input id="pOneIn" class="guessIn" type='number' data-type="number" tabindex="1" placeholder="Enter Your Guess"></input>
+      </div>
+      <div class="row pGridBox">
+      </div>
+      <div class="row pGuessBox pGridBox">
+        <p id="nameThreeOut">Player Three</p>
+        <input id="pThreeIn" class="guessIn" type='number' data-type="number" tabindex="3" placeholder="Enter Your Guess"></input>
+      </div>
+    </div>
+    <div class="playResults col-xs-6">
+      <div class="row">
+        <div id="pOneGuess" class="lastGuess col-xs-6">
+
+        </div>
+        <div id="pTwoGuess" class="lastGuess col-xs-6">
+
+        </div>
+      </div>
+      <div id="totalGuess" class="row">
+        <p>       </p>
+      </div>
+      <div class="row">
+        <div id="pThreeGuess" class="lastGuess col-xs-6">
+
+        </div>
+        <div id="pFourGuess" class="lastGuess col-xs-6">
+
+        </div>
+      </div>
+    </div>
+    <div class="playColumn col-xs-3">
+      <div class="row pGuessBox pGridBox">
+        <p id="nameTwoOut">Player Two</p>
+        <input id="pTwoIn" class="guessIn" type='number' data-type="number" tabindex="2" placeholder="Enter Your Guess"></input>
+      </div>
+      <div class="row pGridBox">
+      </div>
+      <div class="row pGuessBox pGridBox">
+        <p id="nameFourOut">Player Four</p>
+        <input id="pFourIn" class="guessIn" type='number' data-type="number" tabindex="4" placeholder="Enter Your Guess"></input>
+        </div>
+    </div>
+  </div>
+  <div id="playChoices" class="row">
+    <button id="playSubmit" class="btn btn-primary col-xs-3 col-xs-offset-3">Attempt Deactivation Protocol</button>
+    <button id="playQuit" class="btn btn-danger col-xs-3">Abandon All Hope</button>
+  </div>
+</div>
+
+<div id="winScreen" class="container resultScreen">
+<marquee><h3>Well Done! HAL was disconnected and humanity has evolved</h3></marquee>
+  <div id="winMessage" class="row">
+    <div class="monolith">
+    <p></p>
+    <img src="images/monolith.png" alt="Monolith" />
+  </div>
+</div>
+  <div id="winChoices" class="row">
+    <button id="winRestart" class="btn resultRestart">Play Again!</button>
+  </div>
+</div>
+<div id="failScreen" class="container resultScreen">
+  <div id="failMessage" class="row">
+    <marquee><h3>You failed. HAL has killed the entire crew.</h3></marquee>
+    <img src="images/frankpoole.png" alt="you lose" />
+  </div>
+  <div id="failChoices" class="row">
+    <button id="failRestart" class="btn resultRestart">Play Again!</button>
+  </div>
+</div>
+
+<div hidden id="winMusic">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/e-QFj59PON4?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;playlist=e-QFj59PON4&amp;loop=1" frameborder="0" allowfullscreen></iframe></div>
+</div>
+
+</body>
+</html>
